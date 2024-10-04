@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>키워드 추가</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label for="keyword">키워드:</label>
+    <input type="text" id="keyword" name="keyword" required>
+    <button type="submit">생성하기</button>
+</form>
+
+<div class="keyword-list">
+    <h3>분석을 위한 키워드 목록</h3>
+    {% if keywords %}
+        <ul>
+            {% for keyword in keywords %}
+            <li class="keyword-item">
+                {{keyword.pk}}번째 키워드 - {{ keyword.keyword_text }}
+                <form action="{% url 'trends:keyword_detail' keyword.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">삭제하기</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>저장된 키워드가 없습니다.</p>
+    {% endif %}
+</div>
+</div>
+
+{% endblock content %}

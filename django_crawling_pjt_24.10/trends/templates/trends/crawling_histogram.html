@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>wj검색 결과 히스토그램</h2>
+        {% if graph %}
+            <div class="histogram-container">
+                <img src="data:image/png;base64,{{ graph }}" alt="Keyword Trend Analysis">
+            </div>
+        {% else %}
+            <p>저장된 검색 결과가 없습니다. 키워드를 추가하고 크롤링을 수행한 후 다시 시도해 주세요.</p>
+        {% endif %}
+    </div>
+{% endblock content %}

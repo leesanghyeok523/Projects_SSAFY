@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>크롤링 결과</h2>
+
+
+<div class="search-results">
+    <h3>검색 결과</h3>
+    {% if keywords %}
+        <ul>
+            {% for keyword in keywords %}
+            <li>
+                검색 키워드: {{ keyword.keyword_text }}<br>
+                {% for trend in keyword.trend_set.all %}
+                    검색 결과 개수: {{ trend.result_count }}<br>
+                    검색일자: {{ trend.search_date }}<br>
+                {% endfor %}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>저장된 검색 결과가 없습니다.</p>
+    {% endif %}
+</div>
+{% endblock content %}
